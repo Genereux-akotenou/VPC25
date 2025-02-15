@@ -10,3 +10,4 @@ librosa==0.10.2.post1
 # utils
 coqui-tts
 git+https://github.com/openai/whisper.git
+ffmpeg
