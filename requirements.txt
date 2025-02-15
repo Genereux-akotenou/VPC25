@@ -1,6 +1,6 @@
 tqdm==4.67.1
 numpy
-pandas==2.2.3
+pandas
 jiwer==3.1.0
 transformers
 torch==2.6.0
