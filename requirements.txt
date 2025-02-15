@@ -10,5 +10,5 @@ librosa==0.10.2.post1
 # utils
 ipython
 coqui-tts
-git+https://github.com/openai/whisper.git
+openai-whisper
 ffmpeg
