@@ -44,9 +44,12 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     # Apply your anonymization algorithm
     # 01
     result = speech_to_test_model.transcribe(input_audio_path)
-    transcribe = result["text"].replace('.', ', ')
-    transcribe = transcribe.replace('!', '!, ')
-    transcribe = transcribe.replace('?', '?, ')
+    transcribe = result["text"]
+    if transcribe.count(".") > 1:
+        transcribe = ', '.join(transcribe.rsplit('.', maxsplit=1))  
+    # transcribe = result["text"].replace('.', ', ')
+    transcribe = transcribe.replace('!', '  ')
+    # transcribe = transcribe.replace('?', '?, ')
     # 02
     # test_to_speech_model.tts_to_file(transcribe, file_path="out.wav")
     audio_array = test_to_speech_model.tts(transcribe, voice_preset=f"v2/en_speaker_0")
