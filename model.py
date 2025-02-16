@@ -44,7 +44,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     transcribe = result["text"]
     # 02
     # test_to_speech_model.tts_to_file(transcribe, file_path="out.wav")
-    audio_array = test_to_speech_model.tts(transcribe, speaker="default_speaker")
+    audio_array = test_to_speech_model.tts(transcribe, voice_preset="v2/en_speaker_3")
 
     # Output:
     audio = audio_array
