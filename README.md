@@ -1,3 +1,6 @@
+# **readme**
+https://um6p-my.sharepoint.com/:v:/g/personal/mahouzonssou_akotenou_um6p_ma/EXOExx4FUNtIlGTiiZ_SCVcBEjEB40sojt-uvic9Qr3Tug?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=OGIX0e
+
 # **Voice Privacy Challenge**
 
 Welcome to the **Voice Privacy Challenge**! Your task is to develop a model that anonymizes audio while preserving intelligibility and naturalness. This repository provides the necessary setup, evaluation script, and rules for participation.
