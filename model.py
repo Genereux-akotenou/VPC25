@@ -11,6 +11,11 @@
 import whisper
 from TTS.api import TTS
 from IPython.display import Audio
+import torch
+
+device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
+speech_to_test_model = whisper.load_model("base") # large-v2, medium
+test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/bark").to(device)
 
 def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     """
@@ -30,10 +35,6 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
         The sample rate of the processed audio.
     """
 
-    # init
-    speech_to_test_model = whisper.load_model("base") # large-v2, medium
-    test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/bark", gpu=True)
-
     # Read the source audio file
     #audio = Audio("/content/1272-128104-0000.wav")
 
@@ -43,7 +44,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     transcribe = result["text"]
     # 02
     # test_to_speech_model.tts_to_file(transcribe, file_path="out.wav")
-    audio_array = test_to_speech_model.tts(transcribe)
+    audio_array = test_to_speech_model.tts(transcribe, speaker="default_speaker")
 
     # Output:
     audio = audio_array
