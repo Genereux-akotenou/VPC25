@@ -15,7 +15,7 @@ import torch
 
 device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
 speech_to_test_model = whisper.load_model("medium") # large-v2, medium
-test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/bark").to(device)
 
 speaker_list = test_to_speech_model.speakers
 
