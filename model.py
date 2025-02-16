@@ -15,7 +15,10 @@ import torch
 
 device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
 speech_to_test_model = whisper.load_model("medium") # large-v2, medium
-test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/bark").to(device)
+test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+
+print(test_to_speech_model.speakers)
+
 
 def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     """
@@ -43,7 +46,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
 
     # Apply your anonymization algorithm
     # 01
-    result = speech_to_test_model.transcribe(input_audio_path)
+    result = speech_to_test_model.transcribe(input_audio_path, language="en")
     transcribe = result["text"]
     if transcribe.count(".") > 1:
         transcribe = ', '.join(transcribe.rsplit('.', maxsplit=1))  
@@ -52,7 +55,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     # transcribe = transcribe.replace('?', '?, ')
     # 02
     # test_to_speech_model.tts_to_file(transcribe, file_path="out.wav")
-    audio_array = test_to_speech_model.tts(transcribe, voice_preset=f"v2/en_speaker_0")
+    audio_array = test_to_speech_model.tts(transcribe, language="en",)# speaker=f"v2/en_speaker_0")
 
     # Output:
     audio = audio_array
