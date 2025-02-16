@@ -26,7 +26,7 @@ Thumbs.db
 # evaluation_data/
 
 # Evaluation results
-results.csv
+# results.csv
 
 ## speechbrain
 pretrained_models/
