@@ -17,7 +17,7 @@ device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
 speech_to_test_model = whisper.load_model("medium") # large-v2, medium
 test_to_speech_model = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
-print(test_to_speech_model.speakers)
+speaker_list = test_to_speech_model.speakers
 
 
 def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
@@ -39,7 +39,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     """
     speaker = str(input_audio_path).split('/')[2]
     speaker_id = int(speaker.replace('speaker', '')) - 1
-    print(f"<<<<<<<<<<<<<<<<<<<<<<<<<{speaker_id}>>>>>>>>>>>>>>>>>>>>>")
+    # print(f"<<<<<<<<<<<<<<<<<<<<<<<<<{speaker_id}>>>>>>>>>>>>>>>>>>>>>")
 
     # Read the source audio file
     #audio = Audio("/content/1272-128104-0000.wav")
@@ -55,7 +55,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     # transcribe = transcribe.replace('?', '?, ')
     # 02
     # test_to_speech_model.tts_to_file(transcribe, file_path="out.wav")
-    audio_array = test_to_speech_model.tts(transcribe, language="en",)# speaker=f"v2/en_speaker_0")
+    audio_array = test_to_speech_model.tts(transcribe, language="en", speaker=speaker_list[speaker_id])
 
     # Output:
     audio = audio_array
