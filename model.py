@@ -34,6 +34,8 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     sr : int
         The sample rate of the processed audio.
     """
+    speaker = str(input_audio_path).split('/')[1]
+    speaker_id = int(speaker.replace('speaker', '')) - 1
 
     # Read the source audio file
     #audio = Audio("/content/1272-128104-0000.wav")
@@ -41,10 +43,10 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     # Apply your anonymization algorithm
     # 01
     result = speech_to_test_model.transcribe(input_audio_path)
-    transcribe = result["text"]
+    transcribe = result["text"].replace('.', ', ')
     # 02
     # test_to_speech_model.tts_to_file(transcribe, file_path="out.wav")
-    audio_array = test_to_speech_model.tts(transcribe, voice_preset="v2/en_speaker_3")
+    audio_array = test_to_speech_model.tts(transcribe, voice_preset=f"v2/en_speaker_{speaker_id}")
 
     # Output:
     audio = audio_array
