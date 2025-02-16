@@ -34,7 +34,7 @@ def anonymize(input_audio_path): # <!> DO NOT ADD ANY OTHER ARGUMENTS <!>
     sr : int
         The sample rate of the processed audio.
     """
-    speaker = str(input_audio_path).split('/')[1]
+    speaker = str(input_audio_path).split('/')[2]
     speaker_id = int(speaker.replace('speaker', '')) - 1
 
     # Read the source audio file
